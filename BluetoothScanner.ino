@@ -1,21 +1,13 @@
 /*
-  Scan
-
-  This example scans for BLE peripherals and prints out their advertising details:
-  address, local name, advertised service UUID's.
-
-  The circuit:
-  - Arduino MKR WiFi 1010, Arduino Uno WiFi Rev2 board, Arduino Nano 33 IoT,
-    Arduino Nano 33 BLE, or Arduino Nano 33 BLE Sense board.
-
-  This example code is in the public domain.
+  Dit is het bestand voor Olivier om de bluetooth scanner aan toe te voegen  
 */
 
 #include <ArduinoBLE.h>
 #include <stdio.h>
 #include <string.h>
 
-        
+int maxi = 10;
+
 class Device {
   public:
     String name; // deze optinal maken
@@ -27,9 +19,6 @@ class Device {
     }
 };
 
-// 
-int maxi = 10;
-
 // Devices array
 int FoundDeviceIndex;
 
@@ -40,11 +29,25 @@ Device* devices = new Device[maxi];
 // This is for indexing the array
 int count = 0;
 
-void setup() {
-  Serial.begin(115200);
-  while (!Serial);
+int find(Device TheDevice) {
+  Serial.print("Finding: ");
+  Serial.println(TheDevice.name ? TheDevice.address : TheDevice.name);
+  for (int i = 0; i < count; i++) {
+    Serial.println(i);
+   if (devices[i].address == TheDevice.address) {
+     Serial.println("Found device");
+     return i;
+   //  break;
+   }
+  } 
+  Serial.println("Didn't find device");
+  return NULL;
+}
 
-  // begin initializationm
+void BluetoothSetup() {
+
+
+  // begin met bluetooth initialization
   if (!BLE.begin()) {
     Serial.println("starting BLE failed!");
  
@@ -57,7 +60,7 @@ void setup() {
   BLE.scan();
 }
 
-void loop() {
+void BluetoothLoop() {
   // check if a peripheral has been discovered
   BLEDevice peripheral = BLE.available();
 
@@ -122,19 +125,4 @@ void loop() {
       devices[count+1] = TheDevice;
     }
   }
-}
-
-int find(Device TheDevice) {
-  Serial.print("Finding: ");
-  Serial.println(TheDevice.name ? TheDevice.address : TheDevice.name);
-  for (int i = 0; i < count; i++) {
-    Serial.println(i);
-   if (devices[i].address == TheDevice.address) {
-     Serial.println("Found device");
-     return i;
-   //  break;
-   }
-  } 
-  Serial.println("Didn't find device");
-  return NULL;
 }
