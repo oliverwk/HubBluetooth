@@ -75,11 +75,11 @@ class HubOMeterManger: NSObject, CBPeripheralDelegate, CBCentralManagerDelegate,
   public func peripheral(_ peripheral: CBPeripheral, didDiscoverServices error: Error?) {
     if let services = peripheral.services {
       for service in services {
-        self.logger.log("Found services UUID: \(service.uuid, privacy: .public), uuidstring:\(service.uuid.uuidString, privacy: .public)")
+        self.logger.log("Found services: \(service.debugDescription, privacy: .public), uuidstring:\(service.uuid.uuidString, privacy: .public)")
 
         if service.uuid == HubOMeterManger.bleServiceUUID {
           self.logger.log("BLE Service found")
-          // find the good chars
+          // Find the good chars
           peripheral.discoverCharacteristics([HubOMeterManger.bleCharacteristicUUID], for: service)
           return
         }
@@ -92,11 +92,10 @@ class HubOMeterManger: NSObject, CBPeripheralDelegate, CBCentralManagerDelegate,
     if let characteristics = service.characteristics {
       for characteristic in characteristics {
         let uuidString = characteristic.uuid.uuidString
-        self.logger.log("The Characteristic: \(uuidString, privacy: .public)")
-        self.logger.log("cahr: \(characteristic, privacy: .public)")
+        self.logger.log("The uuid: \(uuidString, privacy: .public) Characteristic: \(characteristic, privacy: .public)")
         peripheral.setNotifyValue(true, for: characteristic)
 
-        if characteristic.uuid == HubOMeterManger.bleCharacteristicUUID {
+          if uuidString == "19B10012-E8F2-537E-4F6C-D104768A1214" {
             self.logger.log("BLE service characteristic \(HubOMeterManger.bleCharacteristicUUID, privacy: .public) found")
             peripheral.readValue(for: characteristic)
             peripheral.setNotifyValue(true, for: characteristic)
@@ -112,7 +111,8 @@ class HubOMeterManger: NSObject, CBPeripheralDelegate, CBCentralManagerDelegate,
     if characteristic.uuid.uuidString == "19B10012-E8F2-537E-4F6C-D104768A1214" {
        if let data = characteristic.value {
            logger.log("New data: \(data.debugDescription, privacy: .public) int: \(String(data: data, encoding: String.Encoding.utf8)!, privacy: .public)")
-           self.NumPeople = Int.init(String(data: data, encoding: String.Encoding.utf8)!) ?? 0
+
+           self.NumPeople = Int(String(data: data, encoding: String.Encoding.utf8)!) ?? 0
       }
     }
   }
