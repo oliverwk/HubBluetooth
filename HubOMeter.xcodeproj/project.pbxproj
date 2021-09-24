@@ -13,6 +13,8 @@
 		E628395526FD95AA0055DCCF /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E628394326FD95A90055DCCF /* ContentView.swift */; };
 		E628395626FD95AA0055DCCF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E628394426FD95AA0055DCCF /* Assets.xcassets */; };
 		E628395726FD95AA0055DCCF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E628394426FD95AA0055DCCF /* Assets.xcassets */; };
+		E628396126FD95E50055DCCF /* HubOMeterManger.swift in Sources */ = {isa = PBXBuildFile; fileRef = E628396026FD95E50055DCCF /* HubOMeterManger.swift */; };
+		E628396226FD95E50055DCCF /* HubOMeterManger.swift in Sources */ = {isa = PBXBuildFile; fileRef = E628396026FD95E50055DCCF /* HubOMeterManger.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,6 +24,7 @@
 		E628394926FD95AA0055DCCF /* HubOMeter.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HubOMeter.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E628394F26FD95AA0055DCCF /* HubOMeter.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HubOMeter.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E628395126FD95AA0055DCCF /* macOS.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = macOS.entitlements; sourceTree = "<group>"; };
+		E628396026FD95E50055DCCF /* HubOMeterManger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HubOMeterManger.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,6 +59,7 @@
 			children = (
 				E628394226FD95A90055DCCF /* HubOMeterApp.swift */,
 				E628394326FD95A90055DCCF /* ContentView.swift */,
+				E628396026FD95E50055DCCF /* HubOMeterManger.swift */,
 				E628394426FD95AA0055DCCF /* Assets.xcassets */,
 			);
 			path = Shared;
@@ -176,6 +180,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E628396126FD95E50055DCCF /* HubOMeterManger.swift in Sources */,
 				E628395426FD95AA0055DCCF /* ContentView.swift in Sources */,
 				E628395226FD95AA0055DCCF /* HubOMeterApp.swift in Sources */,
 			);
@@ -185,6 +190,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E628396226FD95E50055DCCF /* HubOMeterManger.swift in Sources */,
 				E628395526FD95AA0055DCCF /* ContentView.swift in Sources */,
 				E628395326FD95AA0055DCCF /* HubOMeterApp.swift in Sources */,
 			);
@@ -314,6 +320,7 @@
 				DEVELOPMENT_TEAM = 6CDWQZK7UX;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSBluetoothAlwaysUsageDescription = "Using bleutooth to conncet to the arduino";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -344,6 +351,7 @@
 				DEVELOPMENT_TEAM = 6CDWQZK7UX;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSBluetoothAlwaysUsageDescription = "Using bleutooth to conncet to the arduino";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
