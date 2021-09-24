@@ -45,7 +45,7 @@ void setup() {
 
   BLE.addService(HubService);
 
-  HubCharacteristic.writeValue(0);
+  HubCharacteristic.writeValue(1);
 
   BLE.advertise();
 
@@ -119,18 +119,29 @@ void loop() {
         delete [] devices;              // free old array memory.
         devices = temp;                 // now a point to the new array.
       }
-
-      d.rssi = peripheral.rssi();
-      d.address =  peripheral.address() ? peripheral.address() : "WTF IS HAPPING";
-
-      // print the RSSI
-      Serial.print("RSSI: ");
-      Serial.println(peripheral.rssi());
-      Serial.println();
-      count++;
-      devices[count + 1] = d;
-      HubCharacteristic.writeValue(count);
-    }
+    // print the advertised service UUIDs, if present
+      if (peripheral.hasAdvertisedServiceUuid()) {
+        Serial.print("Service UUIDs: ");
+        for (int l = 0; l < peripheral.advertisedServiceUuidCount(); l++)  {
+          Serial.print("uuid: ");
+          Serial.println(peripheral.advertisedServiceUuid());
+          // Voeg alleen toe als het de tijd uuid heeft dan is het wrs een ipad
+          if (peripheral.advertisedServiceUuid(l) == "180F") {
+              d.rssi = peripheral.rssi();
+              d.address =  peripheral.address() ? peripheral.address() : "WTF IS HAPPING";        
+              // print the RSSI
+              Serial.print("RSSI: ");
+              Serial.println(peripheral.rssi());
+              count++;
+              devices[count + 1] = d;
+              Serial.print("Writing the value to ble: ");
+              Serial.print(count - 1);
+              HubCharacteristic.writeValue(count - 1); // Want je begint met nul bij tellen en er is nog een bug
+          }
+        }
+        Serial.println();
+      }
+     }
   }
   digitalWrite(LED_BUILTIN, LOW);
 }
