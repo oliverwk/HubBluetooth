@@ -18,14 +18,18 @@ class HubMeterManger: NSObject, CBPeripheralDelegate, CBCentralManagerDelegate, 
         category: "HubMeterManger"
     )
     
-    let uuid = "B8:F1:2A:4E:99:5F"
-    
     
     public let NotificationServiceUUID = CBUUID(string: "7905F431-B5CE-4E99-A40F-4B1E122D00D0")
     private var centralManager: CBCentralManager! = nil
     @Published var NumPeople: Int = 0
     @Published var Devices = [iPad]()
     
+    func refresh() -> Void {
+        self.NumPeople = 0
+        self.Devices = []
+        self.centralManager.stopScan()
+        self.centralManager.scanForPeripherals(withServices: nil, options: [CBCentralManagerScanOptionAllowDuplicatesKey: false])
+    }
     
     func startManager() {
         self.centralManager = CBCentralManager(delegate: self, queue: nil)
@@ -46,7 +50,7 @@ class HubMeterManger: NSObject, CBPeripheralDelegate, CBCentralManagerDelegate, 
     // Handles the result of the scan
     public func centralManager(_ central: CBCentralManager, didDiscover peripheral: CBPeripheral, advertisementData: [String : Any], rssi RSSI: NSNumber) {
         guard peripheral.name != nil else { logger.log("The peripheral has no name"); return }
-        // TODO: Maak hier een better numer van, want het is nu een beetje arbitair gekozen 
+        // TODO: Maak hier een better numer van, want het is nu een beetje arbitair gekozen
         guard Int(truncating: RSSI) > -100 else { logger.log("The peripheral isn't in the HUB"); return }
         logger.log("Found named peripheral: \(peripheral.name!, privacy: .public)")
 

@@ -20,6 +20,10 @@ struct ContentView: View {
         VStack {
             Text("Number of people:")
             Text("\(HubOMeter.NumPeople)")
+            Button("Refresh") {
+                self.logger.log("Refreshing the content")
+                HubOMeter.refresh()
+            }.keyboardShortcut("r", modifiers: [.command]).padding(.top, 20).buttonStyle(.bordered)
         }.onAppear(perform: HubOMeter.startManager)
     }
 }
