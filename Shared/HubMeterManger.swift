@@ -46,6 +46,7 @@ class HubMeterManger: NSObject, CBPeripheralDelegate, CBCentralManagerDelegate, 
     // Handles the result of the scan
     public func centralManager(_ central: CBCentralManager, didDiscover peripheral: CBPeripheral, advertisementData: [String : Any], rssi RSSI: NSNumber) {
         guard peripheral.name != nil else { logger.log("The peripheral has no name"); return }
+        // TODO: Maak hier een better numer van, want het is nu een beetje arbitair gekozen 
         guard Int(truncating: RSSI) > -100 else { logger.log("The peripheral isn't in the HUB"); return }
         logger.log("Found named peripheral: \(peripheral.name!, privacy: .public)")
 
