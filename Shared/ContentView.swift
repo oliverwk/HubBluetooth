@@ -13,16 +13,17 @@ struct ContentView: View {
         subsystem: "nl.wittopkoning.HubOmeter",
         category: "ContentView"
     )
-    @StateObject private var HubOMeter = HubOMeterManger();
+    // @StateObject private var HubOMeter = HubOMeterManger();
+    @StateObject private var HubOMeter = HubMeterManger();
+    
     var body: some View {
-        NavigationView {
-            VStack {
-                Text("Number of people:")
-                Text("\(HubOMeter.NumPeople)")
-            }
-        }.onAppear(perform: HubOMeter.startCentralManager)
+        VStack {
+            Text("Number of people:")
+            Text("\(HubOMeter.NumPeople)")
+        }.onAppear(perform: HubOMeter.startManager)
     }
 }
+
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
         ContentView()

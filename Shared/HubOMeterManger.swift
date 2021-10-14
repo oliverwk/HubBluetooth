@@ -29,8 +29,7 @@ class HubOMeterManger: NSObject, CBPeripheralDelegate, CBCentralManagerDelegate,
     // Accessable by ContentView for Rendering the SwiftUI Body on change in this array.
     @Published var NumPeople: Int = 0
     
-    
-    func startCentralManager() {
+    func startManager() {
         self.centralManager = CBCentralManager(delegate: self, queue: nil)
         self.logger.log("Central Manager State: \(self.centralManager.state.rawValue, privacy: .public)")
     }
