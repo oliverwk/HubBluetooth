@@ -7,9 +7,20 @@
 
 import Foundation
 import SwiftUI
-import UIKit
 import CoreBluetooth
 import os
+
+struct iPad {
+    let id: UUID
+    let name: String
+    var rssi: Int? = 0
+    
+    init(_ peripheral: CBPeripheral) {
+        self.name = peripheral.name!
+        self.id = peripheral.identifier
+    }
+}
+
 
 class HubMeterManger: NSObject, CBPeripheralDelegate, CBCentralManagerDelegate, ObservableObject {
     
@@ -20,7 +31,7 @@ class HubMeterManger: NSObject, CBPeripheralDelegate, CBCentralManagerDelegate, 
     
     
     public let NotificationServiceUUID = CBUUID(string: "7905F431-B5CE-4E99-A40F-4B1E122D00D0")
-    private var centralManager: CBCentralManager! = nil
+    private var centralManager: CBCentralManager!
     @Published var NumPeople: Int = 0
     @Published var Devices = [iPad]()
     
@@ -53,7 +64,7 @@ class HubMeterManger: NSObject, CBPeripheralDelegate, CBCentralManagerDelegate, 
         // TODO: Maak hier een better numer van, want het is nu een beetje arbitair gekozen
         guard Int(truncating: RSSI) > -100 else { logger.log("The peripheral isn't in the HUB"); return }
         logger.log("Found named peripheral: \(peripheral.name!, privacy: .public)")
-
+        
         // TODO: Implement this no idee how want als je nu srevices leest is hij leeg
         let HasNotificationService = true
         

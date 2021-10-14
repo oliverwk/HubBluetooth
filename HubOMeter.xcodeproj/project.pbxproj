@@ -17,8 +17,6 @@
 		E628396226FD95E50055DCCF /* HubOMeterManger.swift in Sources */ = {isa = PBXBuildFile; fileRef = E628396026FD95E50055DCCF /* HubOMeterManger.swift */; };
 		E6524EA82718858B00F128B9 /* UUIDS.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6524EA72718858B00F128B9 /* UUIDS.swift */; };
 		E6524EA92718858B00F128B9 /* UUIDS.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6524EA72718858B00F128B9 /* UUIDS.swift */; };
-		E6524EAB27188BF800F128B9 /* iPadStruct.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6524EAA27188BF800F128B9 /* iPadStruct.swift */; };
-		E6524EAC27188BF800F128B9 /* iPadStruct.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6524EAA27188BF800F128B9 /* iPadStruct.swift */; };
 		E6FEE33227186EB000029C97 /* HubMeterManger.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6FEE33127186EB000029C97 /* HubMeterManger.swift */; };
 		E6FEE33327186EB000029C97 /* HubMeterManger.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6FEE33127186EB000029C97 /* HubMeterManger.swift */; };
 /* End PBXBuildFile section */
@@ -32,7 +30,7 @@
 		E628395126FD95AA0055DCCF /* macOS.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = macOS.entitlements; sourceTree = "<group>"; };
 		E628396026FD95E50055DCCF /* HubOMeterManger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HubOMeterManger.swift; sourceTree = "<group>"; };
 		E6524EA72718858B00F128B9 /* UUIDS.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UUIDS.swift; sourceTree = "<group>"; };
-		E6524EAA27188BF800F128B9 /* iPadStruct.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iPadStruct.swift; sourceTree = "<group>"; };
+		E6524EAD2718956B00F128B9 /* HubOMeter (iOS).entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "HubOMeter (iOS).entitlements"; sourceTree = "<group>"; };
 		E6FEE33127186EB000029C97 /* HubMeterManger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HubMeterManger.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -57,6 +55,7 @@
 		E628393C26FD95A90055DCCF = {
 			isa = PBXGroup;
 			children = (
+				E6524EAD2718956B00F128B9 /* HubOMeter (iOS).entitlements */,
 				E628394126FD95A90055DCCF /* Shared */,
 				E628395026FD95AA0055DCCF /* macOS */,
 				E628394A26FD95AA0055DCCF /* Products */,
@@ -69,9 +68,8 @@
 				E628394226FD95A90055DCCF /* HubOMeterApp.swift */,
 				E628394326FD95A90055DCCF /* ContentView.swift */,
 				E6FEE33127186EB000029C97 /* HubMeterManger.swift */,
-				E6524EAA27188BF800F128B9 /* iPadStruct.swift */,
-				E6524EA72718858B00F128B9 /* UUIDS.swift */,
 				E628396026FD95E50055DCCF /* HubOMeterManger.swift */,
+				E6524EA72718858B00F128B9 /* UUIDS.swift */,
 				E628394426FD95AA0055DCCF /* Assets.xcassets */,
 			);
 			path = Shared;
@@ -196,7 +194,6 @@
 				E6524EA82718858B00F128B9 /* UUIDS.swift in Sources */,
 				E6FEE33227186EB000029C97 /* HubMeterManger.swift in Sources */,
 				E628395426FD95AA0055DCCF /* ContentView.swift in Sources */,
-				E6524EAB27188BF800F128B9 /* iPadStruct.swift in Sources */,
 				E628395226FD95AA0055DCCF /* HubOMeterApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -209,7 +206,6 @@
 				E6524EA92718858B00F128B9 /* UUIDS.swift in Sources */,
 				E6FEE33327186EB000029C97 /* HubMeterManger.swift in Sources */,
 				E628395526FD95AA0055DCCF /* ContentView.swift in Sources */,
-				E6524EAC27188BF800F128B9 /* iPadStruct.swift in Sources */,
 				E628395326FD95AA0055DCCF /* HubOMeterApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -333,6 +329,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = "HubOMeter (iOS).entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 6CDWQZK7UX;
@@ -353,6 +350,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = nl.wittopkoning.HubOMeter;
 				PRODUCT_NAME = HubOMeter;
 				SDKROOT = iphoneos;
+				SUPPORTS_MACCATALYST = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -364,6 +362,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = "HubOMeter (iOS).entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 6CDWQZK7UX;
@@ -384,6 +383,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = nl.wittopkoning.HubOMeter;
 				PRODUCT_NAME = HubOMeter;
 				SDKROOT = iphoneos;
+				SUPPORTS_MACCATALYST = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
