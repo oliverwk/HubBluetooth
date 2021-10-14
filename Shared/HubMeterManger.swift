@@ -24,7 +24,7 @@ class HubMeterManger: NSObject, CBPeripheralDelegate, CBCentralManagerDelegate, 
     public let NotificationServiceUUID = CBUUID(string: "7905F431-B5CE-4E99-A40F-4B1E122D00D0")
     private var centralManager: CBCentralManager! = nil
     @Published var NumPeople: Int = 0
-    @Published var Devices = [String]()
+    @Published var Devices = [iPad]()
     
     
     func startManager() {
@@ -46,13 +46,26 @@ class HubMeterManger: NSObject, CBPeripheralDelegate, CBCentralManagerDelegate, 
     // Handles the result of the scan
     public func centralManager(_ central: CBCentralManager, didDiscover peripheral: CBPeripheral, advertisementData: [String : Any], rssi RSSI: NSNumber) {
         guard peripheral.name != nil else { logger.log("The peripheral has no name"); return }
-        logger.log("Found peripheral: \(peripheral.name!, privacy: .public)")
+        guard Int(truncating: RSSI) > -100 else { logger.log("The peripheral isn't in the HUB"); return }
+        logger.log("Found named peripheral: \(peripheral.name!, privacy: .public)")
+
+        // TODO: Implement this no idee how want als je nu srevices leest is hij leeg
         let HasNotificationService = true
         
-        if (peripheral.name?.hasPrefix("iPad"))! || IsAppleUUID(peripheral: peripheral) && !(Devices.contains(peripheral.name!) && HasNotificationService) {
-            self.logger.log("Found iPad:\(peripheral.name!)! && \(peripheral.services?.contains(where: self.HasNotificationService) != nil)")
-            NumPeople += 1
-            Devices.append(peripheral.name!)
+        if peripheral.name!.hasPrefix("iPad") || IsAppleUUID(peripheral: peripheral) && HasNotificationService {
+            self.logger.log("Found iPad: \(peripheral.name!) rssi: \(RSSI)")
+            if (Devices.firstIndex(where: { $0.id == peripheral.identifier }) != nil) {
+                if let index = Devices.firstIndex(where: { $0.id == peripheral.identifier }) {
+                    Devices[index].rssi = Int(truncating: RSSI)
+                } else {
+                    self.logger.log("Not found and not updating the rssi")
+                }
+            } else {
+                // Hier zit hij er nog niet in uds voegen we hem toe
+                self.logger.debug("Info: \(peripheral.debugDescription)")
+                NumPeople += 1
+                Devices.append(iPad(peripheral))
+            }
         }
     }
     
